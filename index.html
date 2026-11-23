@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="my"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#0d3b31"><title>Your Amal</title>
+<style>
+:root{--green:#0d3b31;--green2:#176653;--gold:#d6b66b;--bg:#f4f6f1;--ink:#1d302a;--muted:#738078;--line:#e2e8e1}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,"Noto Sans Myanmar",sans-serif}
+header{background:linear-gradient(135deg,#0b3028,#176653);color:white;padding:25px 20px 24px;border-radius:0 0 25px 25px}
+.brand{font-size:12px;letter-spacing:2px;color:#e4d3a3}.arabic{font-size:24px;margin:7px 0}.sub{color:#d8e5dd;font-size:13px}
+main{max-width:720px;margin:auto;padding:16px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 4px 16px #173b2b0a}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.muted{color:var(--muted);font-size:12px}.stat{font-size:26px;font-weight:750;color:var(--green)}
+button,select{font:inherit;border:1px solid var(--line);border-radius:11px;padding:9px 12px;background:white;color:var(--ink)}
+button.primary{background:var(--green);color:white;border:0}.tabs{display:flex;gap:7px;overflow:auto;margin-bottom:14px}.tabs button{white-space:nowrap}.tabs .active{background:var(--green);color:white}
+.prayer{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}.prayer:last-child{border:0}.prayer label{display:flex;align-items:center;gap:10px;font-weight:600}
+input[type=checkbox]{width:22px;height:22px;accent-color:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.day{background:#f5f7f3;border-radius:9px;padding:8px 2px;text-align:center;font-size:12px}.day.done{background:#dcefe4;color:#0d573c}.day.today{outline:2px solid var(--gold)}
+.progress{height:9px;background:#edf0eb;border-radius:20px;overflow:hidden;margin-top:8px}.progress span{display:block;height:100%;background:var(--green2);width:0}
+.hidden{display:none}.smallbtn{font-size:12px;padding:7px 9px}.notice{background:#f8f3e6;border:1px solid #eee1bd;padding:12px;border-radius:12px;font-size:13px;line-height:1.6}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:18px}
+</style></head><body>
+<header><div class="brand">YOUR AMAL</div><div class="arabic">عِبَادَتِي</div><div style="font-size:22px;font-weight:700" id="hello">နေ့စဉ် အီဗာဒသ်မှတ်တမ်း</div><div class="sub">သေးငယ်တဲ့ ကြိုးစားမှုတိုင်းဟာ တန်ဖိုးရှိပါတယ် 🌙</div></header>
+<main>
+<div class="tabs"><button class="active" data-tab="today">ယနေ့</button><button data-tab="month">လစဉ်</button><button data-tab="year">နှစ်စဉ်</button><button data-tab="qaza">Qaza</button><button data-tab="settings">ဆက်တင်</button></div>
+<section id="today">
+<div class="card"><div class="row"><div><div class="muted">ယနေ့ရက်စွဲ</div><strong id="dateText"></strong></div><div style="text-align:right"><div class="muted">ပြီးစီးမှု</div><div class="stat" id="todayPct">0%</div></div></div><div class="progress"><span id="todayBar"></span></div></div>
+<div class="card"><div class="row"><strong>နမာဇ် ၅ ကြိမ်</strong><span class="muted">ဖတ်ပြီးတိုင်း အမှန်ခြစ်ပါ</span></div><div id="prayers"></div></div>
+<div class="notice" id="encourage">အလ္လာဟ်အရှင်မြတ်ထံ ချဉ်းကပ်ဖို့ ဒီနေ့လည်း အခွင့်အရေးရှိနေပါတယ်။</div>
+</section>
+<section id="month" class="hidden"><div class="card"><div class="row"><strong>လစဉ်မှတ်တမ်း</strong><select id="monthPick"></select></div><div class="muted" style="margin:12px 0">နေ့စဉ် နမာဇ် ၅ ကြိမ် ပြီးစီးမှုကို ပြထားပါတယ်။</div><div class="grid" id="monthGrid"></div><div style="margin-top:14px" class="row"><span class="muted">စုစုပေါင်းပြီးစီးမှု</span><strong id="monthTotal">0 / 0</strong></div></div></section>
+<section id="year" class="hidden"><div class="card"><div class="row"><strong>နှစ်စဉ်အကျဉ်းချုပ်</strong><select id="yearPick"></select></div><div id="yearList"></div></div></section>
+<section id="qaza" class="hidden"><div class="card"><strong>Qaza နမာဇ် မှတ်တမ်း</strong><p class="muted">ကျန်ရှိသော နမာဇ်များကို သီးခြားမှတ်တမ်းတင်နိုင်ပါတယ်။</p><div id="qazaList"></div><div class="notice">Qaza အရေအတွက်ကို မိမိသိရှိထားသည့်အတိုင်း မှတ်တမ်းတင်ပါ။</div></div></section>
+<section id="settings" class="hidden"><div class="card"><strong>သတိပေးချက်</strong><p class="muted">ည ၉ နာရီတွင် နေ့စဉ်မှတ်တမ်းကို ပြန်စစ်ရန် သတိပေးပါမည်။</p><label class="row"><span>နေ့စဉ် ညသတိပေးချက်</span><input id="reminder" type="checkbox"></label><button class="primary" style="margin-top:14px" id="saveReminder">သိမ်းမည်</button></div><div class="card"><strong>အချက်အလက်</strong><p class="muted">မှတ်တမ်းများကို ဤဖုန်းထဲတွင်သာ သိမ်းဆည်းထားသည်။ App ကို ဖျက်လျှင် မှတ်တမ်းများ ပျောက်နိုင်ပါသည်။</p><button id="export">မှတ်တမ်း Backup ထုတ်ရန်</button><button id="importBtn">Backup ပြန်သွင်းရန်</button><input id="importFile" type="file" accept="application/json" class="hidden"></div></section>
+<footer>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ · Your Amal 1.0</footer>
+</main>
+<script>
+const names=['ဖဂျရ်','ဇုဟ်ရ်','အဆရ်','မဂ်ရိဗ်','အိရှာ'];
+const keys=['fajr','dhuhr','asr','maghrib','isha'];
+const today=new Date(), pad=n=>String(n).padStart(2,'0'), key=(d)=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+let data=JSON.parse(localStorage.getItem('amalData')||'{}');
+let qaza=JSON.parse(localStorage.getItem('amalQaza')||'{}');
+const save=()=>localStorage.setItem('amalData',JSON.stringify(data));
+const dayObj=k=>data[k]||{};
+const count=k=>keys.filter(x=>dayObj(k)[x]).length;
+document.getElementById('dateText').textContent=today.toLocaleDateString('my-MM',{year:'numeric',month:'long',day:'numeric'});
+function renderToday(){let k=key(today),d=dayObj(k);document.getElementById('prayers').innerHTML=names.map((n,i)=>`<div class="prayer"><label><input type="checkbox" data-k="${keys[i]}" ${d[keys[i]]?'checked':''}><span>${n}</span></label><span class="muted">${d[keys[i]]?'ပြီးစီးပါပြီ':'မမှတ်ရသေးပါ'}</span></div>`).join('');
+document.querySelectorAll('#prayers input').forEach(el=>el.onchange=()=>{data[k]=data[k]||{};data[k][el.dataset.k]=el.checked;save();renderToday();});
+let p=Math.round(count(k)/5*100);document.getElementById('todayPct').textContent=p+'%';document.getElementById('todayBar').style.width=p+'%';
+document.getElementById('encourage').textContent=p===100?'အလ်ဟမ်ဒုလिल्लာဟ်။ ယနေ့ နမာဇ်မှတ်တမ်း ပြီးစီးပါပြီ။':'တစ်ကြိမ်ချင်းစီ ကြိုးစားသွားပါ။ မိမိကိုယ်ကို အပြစ်မတင်ဘဲ ဆက်လက်ကြိုးစားပါ။';}
+function initPicks(){for(let i=0;i<12;i++){let o=document.createElement('option');o.value=i;o.textContent=new Date(2026,i,1).toLocaleDateString('my-MM',{month:'long'});document.getElementById('monthPick').append(o)}let years=[today.getFullYear()-1,today.getFullYear(),today.getFullYear()+1];document.getElementById('yearPick').innerHTML=years.map(y=>`<option>${y}</option>`).join('');document.getElementById('monthPick').value=today.getMonth();document.getElementById('yearPick').value=today.getFullYear();}
+function renderMonth(){let y=+document.getElementById('yearPick').value,m=+document.getElementById('monthPick').value,days=new Date(y,m+1,0).getDate(),html='',sum=0;for(let d=1;d<=days;d++){let k=key(new Date(y,m,d)),c=count(k);sum+=c;html+=`<div class="day ${c===5?'done':''} ${key(new Date(y,m,d))===key(today)?'today':''}"><b>${d}</b><br>${c}/5</div>`}document.getElementById('monthGrid').innerHTML=html;document.getElementById('monthTotal').textContent=sum+' / '+days*5;}
+function renderYear(){let y=+document.getElementById('yearPick').value;document.getElementById('yearList').innerHTML=Array.from({length:12},(_,m)=>{let days=new Date(y,m+1,0).getDate(),sum=0;for(let d=1;d<=days;d++)sum+=count(key(new Date(y,m,d)));let pct=Math.round(sum/(days*5)*100);return `<div style="padding:12px 0;border-bottom:1px solid var(--line)"><div class="row"><b>${new Date(y,m,1).toLocaleDateString('my-MM',{month:'long'})}</b><span class="muted">${pct}% · ${sum}/${days*5}</span></div><div class="progress"><span style="width:${pct}%"></span></div></div>`}).join('');}
+function renderQaza(){document.getElementById('qazaList').innerHTML=names.map((n,i)=>`<div class="prayer"><b>${n}</b><div><button class="smallbtn" data-q="${keys[i]}" data-d="-1">−</button> <strong>${qaza[keys[i]]||0}</strong> <button class="smallbtn" data-q="${keys[i]}" data-d="1">+</button></div></div>`).join('');document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{let k=b.dataset.q;qaza[k]=Math.max(0,(qaza[k]||0)+Number(b.dataset.d));localStorage.setItem('amalQaza',JSON.stringify(qaza));renderQaza();});}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');['today','month','year','qaza','settings'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==b.dataset.tab));if(b.dataset.tab==='month')renderMonth();if(b.dataset.tab==='year')renderYear();if(b.dataset.tab==='qaza')renderQaza();});
+document.getElementById('monthPick').onchange=renderMonth;document.getElementById('yearPick').onchange=()=>{renderYear();renderMonth();};
+let reminder=localStorage.getItem('amalReminder')==='true';document.getElementById('reminder').checked=reminder;
+document.getElementById('saveReminder').onclick=()=>{reminder=document.getElementById('reminder').checked;localStorage.setItem('amalReminder',reminder);if(window.AndroidBridge){AndroidBridge.askNotificationPermission();AndroidBridge.scheduleDailyReminder(reminder);}alert(reminder?'ည ၉ နာရီ သတိပေးချက် ဖွင့်ပြီးပါပြီ။':'သတိပေးချက် ပိတ်ပြီးပါပြီ။');};
+document.getElementById('export').onclick=()=>{let blob=new Blob([JSON.stringify({data,qaza},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='your-amal-backup.json';a.click();URL.revokeObjectURL(a.href);};
+document.getElementById('importBtn').onclick=()=>document.getElementById('importFile').click();
+document.getElementById('importFile').onchange=async e=>{try{let o=JSON.parse(await e.target.files[0].text());data=o.data||{};qaza=o.qaza||{};save();localStorage.setItem('amalQaza',JSON.stringify(qaza));renderToday();alert('Backup ပြန်သွင်းပြီးပါပြီ။')}catch(_){alert('ဖိုင်ဖတ်မရပါ။')}};
+initPicks();renderToday();renderMonth();renderYear();
+</script></body></html>
