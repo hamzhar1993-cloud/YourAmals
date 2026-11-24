@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="my"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name="theme-color" content="#0d3b31"><title>Your Amal</title>
+<meta name="theme-color" content="#0d3b31">
+<link rel="manifest" href="./manifest.json">
+  <title>Your Amal</title>
 <style>
 :root{--green:#0d3b31;--green2:#176653;--gold:#d6b66b;--bg:#f4f6f1;--ink:#1d302a;--muted:#738078;--line:#e2e8e1}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,"Noto Sans Myanmar",sans-serif}
@@ -57,4 +59,13 @@ document.getElementById('export').onclick=()=>{let blob=new Blob([JSON.stringify
 document.getElementById('importBtn').onclick=()=>document.getElementById('importFile').click();
 document.getElementById('importFile').onchange=async e=>{try{let o=JSON.parse(await e.target.files[0].text());data=o.data||{};qaza=o.qaza||{};save();localStorage.setItem('amalQaza',JSON.stringify(qaza));renderToday();alert('Backup ပြန်သွင်းပြီးပါပြီ။')}catch(_){alert('ဖိုင်ဖတ်မရပါ။')}};
 initPicks();renderToday();renderMonth();renderYear();
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(reg => console.log("PWA Ready", reg.scope))
+      .catch(err => console.error("PWA Error", err));
+  });
+}
 </script></body></html>
+
