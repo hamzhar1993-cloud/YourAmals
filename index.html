@@ -1,71 +1,142 @@
 <!doctype html>
-<html lang="my"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name="theme-color" content="#0d3b31">
+<html lang="my">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#0b3028">
 <link rel="manifest" href="./manifest.json">
-  <title>Your Amal</title>
+<title>Your Amal V3</title>
 <style>
-:root{--green:#0d3b31;--green2:#176653;--gold:#d6b66b;--bg:#f4f6f1;--ink:#1d302a;--muted:#738078;--line:#e2e8e1}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,"Noto Sans Myanmar",sans-serif}
-header{background:linear-gradient(135deg,#0b3028,#176653);color:white;padding:25px 20px 24px;border-radius:0 0 25px 25px}
-.brand{font-size:12px;letter-spacing:2px;color:#e4d3a3}.arabic{font-size:24px;margin:7px 0}.sub{color:#d8e5dd;font-size:13px}
-main{max-width:720px;margin:auto;padding:16px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 4px 16px #173b2b0a}
-.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.muted{color:var(--muted);font-size:12px}.stat{font-size:26px;font-weight:750;color:var(--green)}
-button,select{font:inherit;border:1px solid var(--line);border-radius:11px;padding:9px 12px;background:white;color:var(--ink)}
-button.primary{background:var(--green);color:white;border:0}.tabs{display:flex;gap:7px;overflow:auto;margin-bottom:14px}.tabs button{white-space:nowrap}.tabs .active{background:var(--green);color:white}
-.prayer{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}.prayer:last-child{border:0}.prayer label{display:flex;align-items:center;gap:10px;font-weight:600}
-input[type=checkbox]{width:22px;height:22px;accent-color:var(--green)}
-.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.day{background:#f5f7f3;border-radius:9px;padding:8px 2px;text-align:center;font-size:12px}.day.done{background:#dcefe4;color:#0d573c}.day.today{outline:2px solid var(--gold)}
-.progress{height:9px;background:#edf0eb;border-radius:20px;overflow:hidden;margin-top:8px}.progress span{display:block;height:100%;background:var(--green2);width:0}
-.hidden{display:none}.smallbtn{font-size:12px;padding:7px 9px}.notice{background:#f8f3e6;border:1px solid #eee1bd;padding:12px;border-radius:12px;font-size:13px;line-height:1.6}
-footer{text-align:center;color:var(--muted);font-size:11px;padding:18px}
-</style></head><body>
-<header><div class="brand">YOUR AMAL</div><div class="arabic">عِبَادَتِي</div><div style="font-size:22px;font-weight:700" id="hello">နေ့စဉ် အီဗာဒသ်မှတ်တမ်း</div><div class="sub">သေးငယ်တဲ့ ကြိုးစားမှုတိုင်းဟာ တန်ဖိုးရှိပါတယ် 🌙</div></header>
-<main>
-<div class="tabs"><button class="active" data-tab="today">ယနေ့</button><button data-tab="month">လစဉ်</button><button data-tab="year">နှစ်စဉ်</button><button data-tab="qaza">Qaza</button><button data-tab="settings">ဆက်တင်</button></div>
-<section id="today">
-<div class="card"><div class="row"><div><div class="muted">ယနေ့ရက်စွဲ</div><strong id="dateText"></strong></div><div style="text-align:right"><div class="muted">ပြီးစီးမှု</div><div class="stat" id="todayPct">0%</div></div></div><div class="progress"><span id="todayBar"></span></div></div>
-<div class="card"><div class="row"><strong>နမာဇ် ၅ ကြိမ်</strong><span class="muted">ဖတ်ပြီးတိုင်း အမှန်ခြစ်ပါ</span></div><div id="prayers"></div></div>
-<div class="notice" id="encourage">အလ္လာဟ်အရှင်မြတ်ထံ ချဉ်းကပ်ဖို့ ဒီနေ့လည်း အခွင့်အရေးရှိနေပါတယ်။</div>
+:root{--g:#0b3028;--g2:#145342;--gold:#d8b86b;--bg:#f4f2e9;--ink:#20352e;--muted:#718078;--line:#e4e6dc;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Myanmar",sans-serif}header{background:linear-gradient(135deg,var(--g),#176653);color:#fff;padding:22px 18px 18px;border-radius:0 0 24px 24px}header h1{margin:0;font-size:25px}header p{margin:4px 0 0;color:#d9e7df;font-size:13px}.wrap{max-width:760px;margin:auto;padding:14px 13px 90px}.tabs{display:flex;gap:7px;overflow:auto;margin:14px 0}.tab{border:1px solid var(--line);background:#fff;color:var(--g);border-radius:20px;padding:9px 13px;white-space:nowrap;font-weight:650}.tab.active{background:var(--g);color:#fff;border-color:var(--g)}.panel{display:none}.panel.active{display:block}.card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:15px;margin:10px 0;box-shadow:0 3px 12px #163d3010}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.muted{color:var(--muted);font-size:12px}.datebar{display:flex;gap:8px;align-items:center}.datebar input{flex:1;min-width:0}.btn,button{border:0;border-radius:11px;background:var(--g2);color:white;padding:10px 13px;font-weight:650;font-size:14px}.btn.secondary,button.secondary{background:#edf2ed;color:var(--g)}input,select{font:inherit;border:1px solid #dce2d9;border-radius:10px;padding:10px;background:#fff;color:var(--ink);max-width:100%}input[type=checkbox]{accent-color:var(--g2);width:19px;height:19px}.checkrow{display:flex;align-items:center;justify-content:space-between;padding:11px 2px;border-bottom:1px solid #edf0e9;gap:8px}.checkrow:last-child{border:0}.checkrow label{flex:1}.sectiontitle{font-weight:750;color:var(--g);margin:2px 0 9px}.progress{height:9px;background:#e8ede7;border-radius:20px;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,#176653,var(--gold));width:0}.big{font-size:27px;font-weight:800;color:var(--g)}.gridwrap{overflow:auto}.monthgrid{border-collapse:separate;border-spacing:3px;width:100%;min-width:560px;font-size:11px}.monthgrid th{background:#edf2ed;color:var(--g);padding:7px 3px;border-radius:6px;position:sticky;top:0}.monthgrid td{background:#fafbf8;text-align:center;padding:6px 2px;border-radius:6px;min-width:34px}.monthgrid td.day{font-weight:750;background:#e9f0e9}.monthgrid td.good{background:#dcefe4;color:#145342}.monthgrid td.mid{background:#fff1cf;color:#765a18}.monthgrid td.none{background:#f5e5e2;color:#91463c}.monthgrid td.future{background:#eef0ef;color:#a0a8a2}.monthgrid td.today{outline:2px solid var(--gold)}.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted)}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px}.qaza-line{display:grid;grid-template-columns:1fr 85px 85px;gap:7px;align-items:center;padding:8px 0;border-bottom:1px solid #edf0e9}.qaza-line input{width:100%;padding:8px}.report{white-space:pre-wrap;line-height:1.75;font-size:13px;background:#fbfcf8;border:1px dashed #cbd8cc;padding:12px;border-radius:12px}.pill{font-size:11px;background:#edf2ed;color:var(--g);padding:4px 8px;border-radius:20px}.notice{font-size:12px;color:#78632e;background:#fff8e6;padding:10px;border-radius:10px;line-height:1.6}.footer{text-align:center;color:#8b958d;font-size:11px;margin:24px 0}
+@media(max-width:420px){.qaza-line{grid-template-columns:1fr 72px 72px}.card{padding:13px}}
+</style>
+</head>
+<body>
+<header><h1>☾ Your Amal <span style="color:var(--gold)">V3</span></h1><p>နေ့စဉ် အမလ်မှတ်တမ်း • ကိုယ်ပိုင်ဖုန်းထဲတွင်သာ သိမ်းဆည်းသည်</p></header>
+<div class="wrap">
+<div class="tabs">
+<button class="tab active" data-tab="today">နေ့စဉ်</button><button class="tab" data-tab="month">လစဉ်ဇယား</button><button class="tab" data-tab="report">အစီရင်ခံစာ</button><button class="tab" data-tab="qaza">ကဇွာနမားဇ်</button><button class="tab" data-tab="settings">ပြင်ဆင်ရန်</button>
+</div>
+<section id="today" class="panel active">
+<div class="card"><div class="row"><div><div class="sectiontitle">ယနေ့ မှတ်တမ်း</div><div class="muted">နေ့စွဲကိုရွေးပြီး မှတ်တမ်းတင်နိုင်သည်</div></div><span class="pill" id="dayBadge">ယနေ့</span></div>
+<div class="datebar" style="margin-top:12px"><input type="date" id="datePick"><button class="secondary" id="todayBtn">ယနေ့</button></div>
+<div style="margin-top:15px" class="row"><strong>ယနေ့ ပြီးစီးမှု</strong><strong id="percent">0%</strong></div><div class="progress"><span id="bar"></span></div><div class="muted" id="countText" style="margin-top:6px">0 / 15 ပြီးစီး</div></div>
+<div class="card"><div class="sectiontitle">၁။ နေ့စဉ် နမားဇ် ၅ ကြိမ်</div><div id="prayers"></div></div>
+<div class="card"><div class="sectiontitle">၂။ စူရာ ၆ ပုဒ်</div><div class="muted">နောက်ဆုံးတစ်ခုကို Settings မှာ မိမိဖတ်လိုသော စူရာအမည်ဖြင့် ပြောင်းနိုင်သည်။</div><div id="surahs"></div></div>
+<div class="card"><div class="sectiontitle">၃။ အခြား အမလ်များ</div><div id="other"></div></div>
+<div class="card"><div class="row"><div><div class="sectiontitle">၄။ Munajat-e-Maqbool</div><div class="muted">မူရင်းစာအုပ်၏ နေ့အလိုက် Manzil အစီအစဉ်</div></div><span class="pill" id="manzilBadge">Manzil</span></div><p id="manzilText" style="line-height:1.7;margin-bottom:8px"></p><div class="checkrow"><label for="munajat">သတ်မှတ်ထားသော Manzil ဖတ်ပြီး</label><input id="munajat" type="checkbox"></div><p class="muted">ဤဗားရှင်းတွင် မူရင်းကျမ်းစာသားကို မခန့်မှန်းဘဲ မထည့်ထားပါ။ မိမိအသုံးပြုသော မူရင်းစာအုပ်နှင့် တိုက်စစ်ပြီးမှ အာရဗီစာသားကို ထည့်သွင်းသင့်သည်။</p><a href="https://www.nooresunnat.com/Audio/Zikr/Munajat%20e%20Maqbool%20English.pdf" target="_blank" rel="noopener">Manzil အစီအစဉ် PDF ဖွင့်ရန် ↗</a></div>
 </section>
-<section id="month" class="hidden"><div class="card"><div class="row"><strong>လစဉ်မှတ်တမ်း</strong><select id="monthPick"></select></div><div class="muted" style="margin:12px 0">နေ့စဉ် နမာဇ် ၅ ကြိမ် ပြီးစီးမှုကို ပြထားပါတယ်။</div><div class="grid" id="monthGrid"></div><div style="margin-top:14px" class="row"><span class="muted">စုစုပေါင်းပြီးစီးမှု</span><strong id="monthTotal">0 / 0</strong></div></div></section>
-<section id="year" class="hidden"><div class="card"><div class="row"><strong>နှစ်စဉ်အကျဉ်းချုပ်</strong><select id="yearPick"></select></div><div id="yearList"></div></div></section>
-<section id="qaza" class="hidden"><div class="card"><strong>Qaza နမာဇ် မှတ်တမ်း</strong><p class="muted">ကျန်ရှိသော နမာဇ်များကို သီးခြားမှတ်တမ်းတင်နိုင်ပါတယ်။</p><div id="qazaList"></div><div class="notice">Qaza အရေအတွက်ကို မိမိသိရှိထားသည့်အတိုင်း မှတ်တမ်းတင်ပါ။</div></div></section>
-<section id="settings" class="hidden"><div class="card"><strong>သတိပေးချက်</strong><p class="muted">ည ၉ နာရီတွင် နေ့စဉ်မှတ်တမ်းကို ပြန်စစ်ရန် သတိပေးပါမည်။</p><label class="row"><span>နေ့စဉ် ညသတိပေးချက်</span><input id="reminder" type="checkbox"></label><button class="primary" style="margin-top:14px" id="saveReminder">သိမ်းမည်</button></div><div class="card"><strong>အချက်အလက်</strong><p class="muted">မှတ်တမ်းများကို ဤဖုန်းထဲတွင်သာ သိမ်းဆည်းထားသည်။ App ကို ဖျက်လျှင် မှတ်တမ်းများ ပျောက်နိုင်ပါသည်။</p><button id="export">မှတ်တမ်း Backup ထုတ်ရန်</button><button id="importBtn">Backup ပြန်သွင်းရန်</button><input id="importFile" type="file" accept="application/json" class="hidden"></div></section>
-<footer>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ · Your Amal 1.0</footer>
-</main>
+<section id="month" class="panel"><div class="card"><div class="row"><div><div class="sectiontitle">လစဉ် အမလ်ဇယား</div><div class="muted">ရက်တိုင်း၏ ပြီးစီးမှုကို ကြည့်နိုင်သည်</div></div><span class="pill">15 လုပ်ဆောင်ချက်</span></div><div class="datebar" style="margin:12px 0"><input type="month" id="monthPick"><button class="secondary" id="thisMonth">ယခုလ</button></div><div class="gridwrap"><table class="monthgrid" id="monthGrid"></table></div><div class="legend" style="margin-top:10px"><span><i class="dot" style="background:#dcefe4"></i>အားလုံးပြီး</span><span><i class="dot" style="background:#fff1cf"></i>တစ်စိတ်တစ်ပိုင်း</span><span><i class="dot" style="background:#f5e5e2"></i>မှတ်တမ်းမရှိ/မပြီး</span><span><i class="dot" style="background:#eef0ef"></i>အနာဂတ်ရက်</span></div><p class="muted">ရက်စွဲတစ်ခုကိုနှိပ်ပါက နေ့စဉ်စာမျက်နှာတွင် ပြင်ဆင်နိုင်သည်။</p></div></section>
+<section id="report" class="panel"><div class="card"><div class="sectiontitle">လစဉ် အစီရင်ခံစာ</div><div class="datebar"><input type="month" id="reportMonth"><button id="makeReport">တွက်ချက်ရန်</button></div><div id="reportOutput" class="report" style="margin-top:12px">လကိုရွေးပြီး “တွက်ချက်ရန်” ကိုနှိပ်ပါ။</div><button class="secondary" id="copyReport" style="margin-top:10px">အစီရင်ခံစာ ကူးယူရန်</button></div></section>
+<section id="qaza" class="panel"><div class="card"><div class="sectiontitle">ကဇွာနမားဇ် လက်ကျန်စာရင်း</div><p class="muted">App မသုံးခင်က လွတ်ခဲ့သော ကဇွာကို အစလက်ကျန်အဖြစ် ကိုယ်တိုင်ထည့်ပါ။ အလိုအလျောက် ခန့်မှန်းတွက်ချက်မည်မဟုတ်ပါ။</p><div class="qaza-line" style="font-weight:700"><span>နမားဇ်</span><span>လက်ကျန်</span><span>ပြန်ဖတ်ပြီး</span></div><div id="qazaRows"></div><div class="row" style="margin-top:13px"><strong>စုစုပေါင်း လက်ကျန်</strong><strong class="big" id="qazaTotal">0</strong></div><p class="muted">“ပြန်ဖတ်ပြီး” ထည့်သည့်အခါ လက်ကျန်မှ နုတ်မည်။</p></div></section>
+<section id="settings" class="panel">
+<div class="card"><div class="sectiontitle">စူရာအမည် ပြင်ဆင်ရန်</div><label class="muted" for="sixthSurah">ဆဋ္ဌမ စူရာအမည်</label><input id="sixthSurah" style="width:100%;margin:7px 0" placeholder="ဥပမာ - စူရာအမည်"><button id="saveSurah">သိမ်းဆည်းရန်</button></div>
+<div class="card"><div class="sectiontitle">သတိပေးချက်</div><div class="checkrow"><label for="reminderToggle">ည ၉ နာရီတွင် မှတ်တမ်းစစ်ရန် သတိပေးချက်</label><input type="checkbox" id="reminderToggle"></div><button class="secondary" id="enableNotify" style="margin-top:10px">Notification ခွင့်ပြုချက်ဖွင့်ရန်</button><p class="muted">ဖုန်း/Browser က background notification ကို ပိတ်ထားလျှင် သတိပေးချက် မရနိုင်ပါ။ App ဖွင့်ထားစဉ်တွင်သာ စစ်ဆေးပေးနိုင်သည်။</p></div>
+<div class="card"><div class="sectiontitle">ဒေတာ အရန်သိမ်းဆည်းခြင်း</div><p class="muted">ဖုန်းပြောင်းခြင်း၊ App ပြန်တင်ခြင်းမပြုမီ Backup ထုတ်ထားပါ။</p><div class="row"><button id="exportBtn">Backup ထုတ်ရန်</button><label class="btn secondary" for="importFile">Backup ပြန်ထည့်ရန်</label><input id="importFile" type="file" accept="application/json" hidden></div></div>
+<div class="card"><div class="sectiontitle">ဒေတာနှင့် လုံခြုံရေး</div><p class="muted">မှတ်တမ်းများကို ဤဖုန်း၏ Browser storage ထဲတွင်သာ သိမ်းဆည်းသည်။ Server သို့ အလိုအလျောက် မပို့ပါ။ Browser storage ဖျက်လျှင် ပျောက်နိုင်သဖြင့် Backup ထားပါ။</p><button class="secondary" id="refreshApp">App ပြန်လည်စတင်ရန်</button></div>
+</section>
+<div class="footer">Your Amal V3 • Allah လက်ခံတော်မူပါစေ 🤲</div></div>
 <script>
-const names=['ဖဂျရ်','ဇုဟ်ရ်','အဆရ်','မဂ်ရိဗ်','အိရှာ'];
-const keys=['fajr','dhuhr','asr','maghrib','isha'];
-const today=new Date(), pad=n=>String(n).padStart(2,'0'), key=(d)=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-let data=JSON.parse(localStorage.getItem('amalData')||'{}');
-let qaza=JSON.parse(localStorage.getItem('amalQaza')||'{}');
-const save=()=>localStorage.setItem('amalData',JSON.stringify(data));
-const dayObj=k=>data[k]||{};
-const count=k=>keys.filter(x=>dayObj(k)[x]).length;
-document.getElementById('dateText').textContent=today.toLocaleDateString('my-MM',{year:'numeric',month:'long',day:'numeric'});
-function renderToday(){let k=key(today),d=dayObj(k);document.getElementById('prayers').innerHTML=names.map((n,i)=>`<div class="prayer"><label><input type="checkbox" data-k="${keys[i]}" ${d[keys[i]]?'checked':''}><span>${n}</span></label><span class="muted">${d[keys[i]]?'ပြီးစီးပါပြီ':'မမှတ်ရသေးပါ'}</span></div>`).join('');
-document.querySelectorAll('#prayers input').forEach(el=>el.onchange=()=>{data[k]=data[k]||{};data[k][el.dataset.k]=el.checked;save();renderToday();});
-let p=Math.round(count(k)/5*100);document.getElementById('todayPct').textContent=p+'%';document.getElementById('todayBar').style.width=p+'%';
-document.getElementById('encourage').textContent=p===100?'အလ်ဟမ်ဒုလिल्लာဟ်။ ယနေ့ နမာဇ်မှတ်တမ်း ပြီးစီးပါပြီ။':'တစ်ကြိမ်ချင်းစီ ကြိုးစားသွားပါ။ မိမိကိုယ်ကို အပြစ်မတင်ဘဲ ဆက်လက်ကြိုးစားပါ။';}
-function initPicks(){for(let i=0;i<12;i++){let o=document.createElement('option');o.value=i;o.textContent=new Date(2026,i,1).toLocaleDateString('my-MM',{month:'long'});document.getElementById('monthPick').append(o)}let years=[today.getFullYear()-1,today.getFullYear(),today.getFullYear()+1];document.getElementById('yearPick').innerHTML=years.map(y=>`<option>${y}</option>`).join('');document.getElementById('monthPick').value=today.getMonth();document.getElementById('yearPick').value=today.getFullYear();}
-function renderMonth(){let y=+document.getElementById('yearPick').value,m=+document.getElementById('monthPick').value,days=new Date(y,m+1,0).getDate(),html='',sum=0;for(let d=1;d<=days;d++){let k=key(new Date(y,m,d)),c=count(k);sum+=c;html+=`<div class="day ${c===5?'done':''} ${key(new Date(y,m,d))===key(today)?'today':''}"><b>${d}</b><br>${c}/5</div>`}document.getElementById('monthGrid').innerHTML=html;document.getElementById('monthTotal').textContent=sum+' / '+days*5;}
-function renderYear(){let y=+document.getElementById('yearPick').value;document.getElementById('yearList').innerHTML=Array.from({length:12},(_,m)=>{let days=new Date(y,m+1,0).getDate(),sum=0;for(let d=1;d<=days;d++)sum+=count(key(new Date(y,m,d)));let pct=Math.round(sum/(days*5)*100);return `<div style="padding:12px 0;border-bottom:1px solid var(--line)"><div class="row"><b>${new Date(y,m,1).toLocaleDateString('my-MM',{month:'long'})}</b><span class="muted">${pct}% · ${sum}/${days*5}</span></div><div class="progress"><span style="width:${pct}%"></span></div></div>`}).join('');}
-function renderQaza(){document.getElementById('qazaList').innerHTML=names.map((n,i)=>`<div class="prayer"><b>${n}</b><div><button class="smallbtn" data-q="${keys[i]}" data-d="-1">−</button> <strong>${qaza[keys[i]]||0}</strong> <button class="smallbtn" data-q="${keys[i]}" data-d="1">+</button></div></div>`).join('');document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{let k=b.dataset.q;qaza[k]=Math.max(0,(qaza[k]||0)+Number(b.dataset.d));localStorage.setItem('amalQaza',JSON.stringify(qaza));renderQaza();});}
-document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');['today','month','year','qaza','settings'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==b.dataset.tab));if(b.dataset.tab==='month')renderMonth();if(b.dataset.tab==='year')renderYear();if(b.dataset.tab==='qaza')renderQaza();});
-document.getElementById('monthPick').onchange=renderMonth;document.getElementById('yearPick').onchange=()=>{renderYear();renderMonth();};
-let reminder=localStorage.getItem('amalReminder')==='true';document.getElementById('reminder').checked=reminder;
-document.getElementById('saveReminder').onclick=()=>{reminder=document.getElementById('reminder').checked;localStorage.setItem('amalReminder',reminder);if(window.AndroidBridge){AndroidBridge.askNotificationPermission();AndroidBridge.scheduleDailyReminder(reminder);}alert(reminder?'ည ၉ နာရီ သတိပေးချက် ဖွင့်ပြီးပါပြီ။':'သတိပေးချက် ပိတ်ပြီးပါပြီ။');};
-document.getElementById('export').onclick=()=>{let blob=new Blob([JSON.stringify({data,qaza},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='your-amal-backup.json';a.click();URL.revokeObjectURL(a.href);};
-document.getElementById('importBtn').onclick=()=>document.getElementById('importFile').click();
-document.getElementById('importFile').onchange=async e=>{try{let o=JSON.parse(await e.target.files[0].text());data=o.data||{};qaza=o.qaza||{};save();localStorage.setItem('amalQaza',JSON.stringify(qaza));renderToday();alert('Backup ပြန်သွင်းပြီးပါပြီ။')}catch(_){alert('ဖိုင်ဖတ်မရပါ။')}};
-initPicks();renderToday();renderMonth();renderYear();
-
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js")
-      .then(reg => console.log("PWA Ready", reg.scope))
-      .catch(err => console.error("PWA Error", err));
-  });
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const KEY='amalData',QKEY='amalQaza',RKEY='amalReminder',SKEY='amalV3Settings',V3KEY='amalV3Data';
+const prayerNames=['ဖဂျ်ရ်','ဇုဟ်ရ်','အဆရ်','မဂ်ရိဗ်','အိရှာ'];
+const prayerKeys=['fajr','dhuhr','asr','maghrib','isha'];
+const baseSurahs=['စူရာ ယာစီန်','စူရာ အလ်ဖသ်','စူရာ အန်နဗအ်','စူရာ အလ်ဝါကိအဟ်','စူရာ အလ်မုလ်က်'];
+const otherNames=['ဒရူးဒ် ဖတ်ခြင်း','အစ်စ်သိဂ်ဖာရ် ဖတ်ခြင်း','ကလိမဟ် ဖတ်ခြင်း'];
+const weekdays=['တနင်္ဂနွေ','တနင်္လာ','အင်္ဂါ','ဗုဒ္ဓဟူး','ကြာသပတေး','သောကြာ','စနေ'];
+// မူရင်းအပတ်စဉ်အစီအစဉ်: စနေ=1၊ တနင်္ဂနွေ=2 ... သောကြာ=7
+const manzilByDay=[2,3,4,5,6,7,1];
+let data={},qaza={},settings={sixth:'မိမိရွေးချယ်သော စူရာ'},currentDate=localISO(new Date());
+function localISO(d){return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10)}
+function read(k,def){try{const v=localStorage.getItem(k);return v===null?def:JSON.parse(v)}catch(e){return def}}
+function isObj(v){return v&&typeof v==='object'&&!Array.isArray(v)}
+function blank(){return {p:[false,false,false,false,false],s:[false,false,false,false,false,false],o:[false,false,false],m:false}}
+function migrateDay(v){
+ const x=blank();if(Array.isArray(v)){prayerKeys.forEach((k,i)=>x.p[i]=!!v[i]);return x}
+ if(!isObj(v))return x;
+ if(Array.isArray(v.p))x.p=Array.from({length:5},(_,i)=>!!v.p[i]);
+ else prayerKeys.forEach((k,i)=>x.p[i]=!!(v[k]??v[k.toUpperCase()]));
+ if(Array.isArray(v.s))x.s=Array.from({length:6},(_,i)=>!!v.s[i]);
+ else if(Array.isArray(v.surahs))x.s=Array.from({length:6},(_,i)=>!!v.surahs[i]);
+ if(Array.isArray(v.o))x.o=Array.from({length:3},(_,i)=>!!v.o[i]);
+ else if(Array.isArray(v.other))x.o=Array.from({length:3},(_,i)=>!!v.other[i]);
+ x.m=!!(v.m??v.munajat);return x;
 }
-</script></body></html>
-
+function migrateAll(source){const out={};if(!isObj(source))return out;Object.keys(source).forEach(k=>{if(/^\d{4}-\d{2}-\d{2}$/.test(k))out[k]=migrateDay(source[k])});return out}
+function normalizeQaza(source){const out={};const keys=['Fajr','Dhuhr','Asr','Maghrib','Isha'];keys.forEach(k=>{const v=source?.[k]??source?.[k.toLowerCase()]??0;out[k]=Math.max(0,Math.floor(Number(v)||0))});return out}
+function load(){
+ const legacy=read(KEY,{}),v3=read(V3KEY,null);
+ // V3 ရှိပြီးသားဒေတာကို ဦးစားပေးပြီး၊ မရှိသေးလျှင် V2 amalData ကို ပြောင်းယူသည်။
+ data=migrateAll(v3??legacy);
+ qaza=normalizeQaza(read(QKEY,{}));
+ settings={...settings,...(isObj(read(SKEY,{}))?read(SKEY,{}):{})};
+ // မူလ reminder key ကို မဖျက်ဘဲ V3 checkbox အဖြစ် ဆက်သုံးသည်။
+ save();
+}
+function save(){localStorage.setItem(V3KEY,JSON.stringify(data));localStorage.setItem(QKEY,JSON.stringify(qaza));localStorage.setItem(SKEY,JSON.stringify(settings))}
+function dateObj(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+function getDay(s){if(!data[s])data[s]=blank();return data[s]}
+function peekDay(s){return data[s]||blank()}
+function total(){return 15}
+function checked(x){return [...x.p,...x.s,...x.o,x.m].filter(Boolean).length}
+function renderDay(){
+ $('datePick').value=currentDate;const x=getDay(currentDate),surahs=[...baseSurahs,settings.sixth||'မိမိရွေးချယ်သော စူရာ'];
+ $('dayBadge').textContent=currentDate===localISO(new Date())?'ယနေ့':currentDate;
+ $('prayers').innerHTML=prayerNames.map((n,i)=>checkHTML('p',i,n,x.p[i])).join('');
+ $('surahs').innerHTML=surahs.map((n,i)=>checkHTML('s',i,n,x.s[i])).join('');
+ $('other').innerHTML=otherNames.map((n,i)=>checkHTML('o',i,n,x.o[i])).join('');
+ const dt=dateObj(currentDate),mn=manzilByDay[dt.getDay()];
+ $('manzilBadge').textContent='Manzil '+mn;
+ $('manzilText').textContent=`${weekdays[dt.getDay()]}နေ့အတွက် မူရင်းအစီအစဉ်အရ Manzil ${mn} ကို ဖတ်ရန်ဖြစ်သည်။`;
+ $('munajat').checked=x.m;
+ const n=checked(x),pct=Math.round(n/total()*100);$('percent').textContent=pct+'%';$('bar').style.width=pct+'%';$('countText').textContent=`${n} / ${total()} ပြီးစီး`;
+}
+function checkHTML(type,i,label,val){return `<div class="checkrow"><label for="${type}${i}">${label}</label><input type="checkbox" id="${type}${i}" data-type="${type}" data-index="${i}" ${val?'checked':''}></div>`}
+function renderMonth(){
+ const val=$('monthPick').value||currentDate.slice(0,7),[y,m]=val.split('-').map(Number),days=new Date(y,m,0).getDate(),today=localISO(new Date());
+ let h='<thead><tr><th>အချက်</th>'+Array.from({length:days},(_,i)=>`<th>${i+1}</th>`).join('')+'</tr></thead><tbody>';
+ const rows=[['နမားဇ်',x=>x.p],['စူရာ',x=>x.s],['အခြား',x=>x.o],['မုနာဂျာ',x=>[x.m]]];
+ rows.forEach(([name,fn])=>{h+=`<tr><td class="day">${name}</td>`;for(let d=1;d<=days;d++){const dt=`${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`,x=peekDay(dt),a=fn(x),n=a.filter(Boolean).length,future=dt>today,has=!!data[dt],cls=future?'future':n===a.length&&has?'good':n?'mid':'none';h+=`<td class="${cls} ${dt===today?'today':''}" data-date="${dt}">${future?'—':`${n}/${a.length}`}</td>`}h+='</tr>'});
+ h+='<tr><td class="day">စုစုပေါင်း</td>';for(let d=1;d<=days;d++){const dt=`${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`,x=peekDay(dt),n=checked(x);h+=`<td class="${dt>today?'future':n===total()&&data[dt]?'good':n?'mid':'none'} ${dt===today?'today':''}" data-date="${dt}">${dt>today?'—':`${n}/${total()}`}</td>`}h+='</tr></tbody>';$('monthGrid').innerHTML=h;
+}
+function makeReport(){
+ const val=$('reportMonth').value||currentDate.slice(0,7),[y,m]=val.split('-').map(Number),days=new Date(y,m,0).getDate(),today=localISO(new Date()),last=val===today.slice(0,7)?Number(today.slice(8,10)):val>today.slice(0,7)?0:days;
+ let sums=[0,0,0,0],miss=[0,0,0,0],recorded=0,daily=0,all=0;
+ for(let d=1;d<=last;d++){const key=`${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;if(!data[key])continue;recorded++;const x=peekDay(key),groups=[x.p,x.s,x.o,[x.m]];groups.forEach((g,i)=>{sums[i]+=g.filter(Boolean).length;miss[i]+=g.length-g.filter(Boolean).length});daily+=checked(x);all+=total()}
+ const labels=['နမားဇ်','စူရာ','အခြားအမလ်','Munajat-e-Maqbool'],caps=[5,6,3,1];
+ let out=`Your Amal — ${y} ခုနှစ် ${m} လ အစီရင်ခံစာ\n\n`;
+ out+=`တွက်ချက်နိုင်သည့်ရက်: ${last} ရက်\nမှတ်တမ်းထည့်ထားသည့်ရက်: ${recorded} ရက်\nမှတ်တမ်းမထည့်ထားသည့်ရက်: ${last-recorded} ရက်\n\n`;
+ if(recorded){out+=`မှတ်တမ်းရှိသည့်ရက်များ၏ ပြီးစီးမှု: ${daily}/${all} (${Math.round(daily/all*100)}%)\n\n`;labels.forEach((l,i)=>{const max=caps[i]*recorded;out+=`${l}\nပြီးစီး: ${sums[i]} / ${max}\nမပြီးသေး: ${miss[i]}\nပြီးစီးနှုန်း: ${Math.round(sums[i]/max*100)}%\n\n`})}
+ else out+='ဤလအတွက် မှတ်တမ်းမရှိသေးပါ။\n';
+ out+='မှတ်ချက်: မှတ်တမ်းထည့်ထားသည့်ရက်များကိုသာ ရာခိုင်နှုန်းတွက်ချက်ထားသည်။ အနာဂတ်ရက်များနှင့် မှတ်တမ်းမရှိသောရက်များကို မပြီးသေးဟု မတွက်ပါ။';
+ $('reportOutput').textContent=out;
+}
+function renderQaza(){
+ const names=['Fajr','Dhuhr','Asr','Maghrib','Isha'],bur=['ဖဂျ်ရ်','ဇုဟ်ရ်','အဆရ်','မဂ်ရိဗ်','အိရှာ'];
+ $('qazaRows').innerHTML=names.map((k,i)=>`<div class="qaza-line"><strong>${bur[i]}</strong><input type="number" min="0" step="1" data-qaza="${k}" value="${qaza[k]}" aria-label="${bur[i]} လက်ကျန်"><input type="number" min="0" step="1" data-paid="${k}" value="0" aria-label="${bur[i]} ပြန်ဖတ်ပြီး" placeholder="0"></div>`).join('');
+ $('qazaTotal').textContent=names.reduce((a,k)=>a+qaza[k],0);
+}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.tab));if(b.dataset.tab==='month')renderMonth();if(b.dataset.tab==='qaza')renderQaza();if(b.dataset.tab==='report')makeReport()}));
+$('datePick').addEventListener('change',e=>{currentDate=e.target.value||localISO(new Date());renderDay()});
+$('todayBtn').onclick=()=>{currentDate=localISO(new Date());renderDay()};
+$('monthPick').addEventListener('change',renderMonth);$('thisMonth').onclick=()=>{$('monthPick').value=currentDate.slice(0,7);renderMonth()};
+$('monthGrid').addEventListener('click',e=>{const td=e.target.closest('[data-date]');if(td){currentDate=td.dataset.date;document.querySelector('[data-tab="today"]').click();renderDay()}});
+$('today').addEventListener('change',e=>{const t=e.target;if(t.matches('[data-type]')){const x=getDay(currentDate),arr=x[t.dataset.type];arr[Number(t.dataset.index)]=t.checked;save();renderDay();renderMonth()}else if(t.id==='munajat'){getDay(currentDate).m=t.checked;save();renderDay();renderMonth()}});
+$('makeReport').onclick=makeReport;$('copyReport').onclick=()=>{const t=$('reportOutput').textContent;if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>alert('အစီရင်ခံစာ ကူးယူပြီးပါပြီ')).catch(()=>alert(t));else alert(t)};
+$('qazaRows').addEventListener('change',e=>{const t=e.target;if(t.dataset.qaza){qaza[t.dataset.qaza]=Math.max(0,Math.floor(Number(t.value)||0));save();renderQaza()}if(t.dataset.paid){const k=t.dataset.paid,paid=Math.max(0,Math.floor(Number(t.value)||0));qaza[k]=Math.max(0,qaza[k]-paid);save();renderQaza()}});
+$('sixthSurah').value=settings.sixth;$('saveSurah').onclick=()=>{settings.sixth=$('sixthSurah').value.trim()||'မိမိရွေးချယ်သော စူရာ';save();renderDay();alert('သိမ်းဆည်းပြီးပါပြီ')};
+function reminderEnabled(){const raw=localStorage.getItem(RKEY);return raw==='true'||raw==='"true"'}
+$('reminderToggle').checked=reminderEnabled();$('reminderToggle').onchange=e=>localStorage.setItem(RKEY,JSON.stringify(e.target.checked));
+$('enableNotify').onclick=async()=>{if(!('Notification'in window)){alert('ဤ Browser တွင် Notification မပံ့ပိုးပါ');return}try{const p=await Notification.requestPermission();alert(p==='granted'?'ခွင့်ပြုချက်ရရှိပါပြီ။ App ဖွင့်ထားစဉ် သတိပေးနိုင်ပါမည်။':'Notification ခွင့်ပြုချက် မရရှိပါ။')}catch(e){alert('ခွင့်ပြုချက်တောင်းမရပါ')}};
+function checkReminder(){if(!$('reminderToggle').checked||!('Notification'in window)||Notification.permission!=='granted')return;const now=new Date();if(now.getHours()===21&&now.getMinutes()===0){const key='amalReminderLast',today=localISO(now);if(localStorage.getItem(key)!==today){new Notification('Your Amal',{body:'ယနေ့ နမားဇ်နှင့် အမလ်မှတ်တမ်းကို ညင်သာစွာ ပြန်စစ်ကြည့်ပါ 🤲'});localStorage.setItem(key,today)}}}
+setInterval(checkReminder,60000);
+$('exportBtn').onclick=()=>{save();const blob=new Blob([JSON.stringify({version:3,data,qaza,settings,amalData:read(KEY,{})},null,2)],{type:'application/json'}),a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download='Your-Amal-Backup-'+localISO(new Date())+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+$('importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(!isObj(obj))throw Error();const source=obj.data??obj.amalData;if(isObj(source))data=migrateAll(source);if(isObj(obj.qaza))qaza=normalizeQaza(obj.qaza);if(isObj(obj.settings))settings={...settings,...obj.settings};save();renderDay();renderMonth();renderQaza();alert('Backup ပြန်ထည့်ပြီးပါပြီ')}catch(err){alert('Backup ဖိုင်ဖတ်မရပါ။ မှန်ကန်သော Your Amal Backup ဖိုင်ကို ရွေးပါ။')}e.target.value=''};
+$('refreshApp').onclick=()=>location.reload();
+load();$('datePick').value=currentDate;$('monthPick').value=currentDate.slice(0,7);$('reportMonth').value=currentDate.slice(0,7);$('reminderToggle').checked=reminderEnabled();$('sixthSurah').value=settings.sixth;renderDay();renderMonth();renderQaza();makeReport();
+if('serviceWorker'in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
+})();
+</script>
+</body></html>
